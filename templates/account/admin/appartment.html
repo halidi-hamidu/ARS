@@ -1,0 +1,88 @@
+{% extends './base.html' %}
+{% block title %} login {% endblock %}
+
+{% block content %}
+<div class="count_appartment_section">
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="inner_section">
+                <div class="title">
+                    Appartment Posted
+                </div>
+                <div class="count">
+                    {{ appartment_posted }}
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
+<div class="appartment_form_section_and_table">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <form action="">
+                    {% csrf_token %}
+                    {{form}}
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+            <div class="col-md-8">
+                <div class="tabe_section">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-xl-12 col-lg-12 mb-4">
+                          <div class="card">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                             
+                            </div>
+                            
+                            <div class="table-responsive pl-2">
+                             
+                              <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                                <thead class="" >
+                                  <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>Date posted</th>
+                                    <th> posted by </th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                  <tr >
+                                    <td><a href="#" ></a></td>
+                                    <td ></td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                    
+
+                                    <td>
+                                      <a data-toggle="modal" data-target="#productInStoredDetailViewModal" class="btn btn-sm btn-outline-primary text-primary"><i class="fas fas fa-eye"></i></a>
+                                      <!-- update button is here  -->
+                                      <a  data-toggle="modal" data-target="#updateproductInStoreModal"
+                                      class="btn btn-sm btn-outline-warning"  ><i class="fas fas fas fa-pen"></i></a>
+                                      <a  data-toggle="modal" data-target="#deletestoreProductModal" class="btn btn-sm btn-outline-danger"><i class="fas fas fas far fa-trash-alt"></i></a>
+                                    </td>
+                                  </tr>
+                                
+                                </tbody>
+                              </table>
+                            </div>
+                        
+                            <div class="card-footer"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

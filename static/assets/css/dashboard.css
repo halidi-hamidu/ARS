@@ -1,0 +1,38 @@
+:root{
+    --redColor: rgb(187, 5, 5);
+    --shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+    --greyColor:#eee;
+}
+/* count_appartment_section */
+.count_appartment_section{
+    border: 1px solid var(--greyColor);
+    padding: 25px 1px;
+}
+.count_appartment_section .inner_section{
+    display: flex;
+    justify-content: space-between;
+}
+.appartment_form_section_and_table{
+    margin-top: 10px;
+}
+.appartment_form_section_and_table form input{
+    display: block;
+    width: 100%;
+    border: 1px solid #504b4b;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+.appartment_form_section_and_table form input[type='submit']{
+    display: block;
+    width: 100%;
+    border: 1px solid #504b4b;
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: blue;
+    color: #fff;
+    margin-top:10px ;
+}
+.appartment_form_section_and_table form{
+    padding: 20px 10px;
+    box-shadow: var(--shadow);
+}

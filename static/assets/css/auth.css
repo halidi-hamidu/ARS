@@ -1,0 +1,34 @@
+:root{
+    --redColor: rgb(187, 5, 5);
+    --shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+}
+
+.login_form_section .inner_section{
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+   
+}
+.login_form_section .inner_section form{
+    background-color: aliceblue;
+    padding: 20px 30px;
+    box-shadow: var(--shadow);
+}
+.login_form_section .inner_section form input{
+    width: 100%;
+    border: 1px solid #504b4b;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.login_form_section .inner_section form input[type="submit"]{
+    width: 100%;
+    border: 1px solid #504b4b;
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: blue;
+    color: white;
+}
