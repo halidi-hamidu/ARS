@@ -35,19 +35,18 @@ def dashboardPage(request):
 class AppartmentPage(View):
 
     def get(self, request, *args, **kwargs):
-        get_item_posted = Appartment.objects.all()
+        get_apartment_posted = Appartment.objects.all()
         appartment_posted = Appartment.objects.all().count()
         form = AppartmentForm()
         template_name ='account/admin/appartment.html'
         context = {
             'form':form,
             'appartment_posted':appartment_posted,
-            'get_item_posted':get_item_posted
+            'get_apartment_posted':get_apartment_posted
         }
         return render(request, template_name, context)#
     
     def post(self, request, *args, **kwargs):
-        print('----------------------------------')
         if request.method == 'POST':
             form = AppartmentForm(request.POST, request.FILES)
             if form.is_valid():
