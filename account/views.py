@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import CustomLoginForm, AppartmentForm
+from .forms import CustomLoginForm, ApartmentForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Appartment
+from .models import Apartment
 from django.contrib import messages
 from django.views import View
 # Create your views here.
@@ -32,27 +32,27 @@ def dashboardPage(request):
     return render(request, template_name, context)
 
 
-class AppartmentPage(View):
+class ApartmentPage(View):
 
     def get(self, request, *args, **kwargs):
-        get_apartment_posted = Appartment.objects.all()
-        appartment_posted = Appartment.objects.all().count()
-        form = AppartmentForm()
-        template_name ='account/admin/appartment.html'
+        get_apartment_posted = Apartment.objects.all()
+        Apartment_posted = Apartment.objects.all().count()
+        form = ApartmentForm()
+        template_name ='account/admin/Apartment.html'
         context = {
             'form':form,
-            'appartment_posted':appartment_posted,
+            'Apartment_posted':Apartment_posted,
             'get_apartment_posted':get_apartment_posted
         }
         return render(request, template_name, context)#
     
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
-            form = AppartmentForm(request.POST, request.FILES)
+            form = ApartmentForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Success Post saved ')
-                return redirect('account:appartment')
+                return redirect('account:Apartment')
             else:
                 messages.error(request, 'POst not saved ')
-                return redirect('account:appartment')
+                return redirect('account:Apartment')

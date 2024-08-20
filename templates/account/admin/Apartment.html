@@ -55,7 +55,7 @@
                                  {% for apartment in get_apartment_posted %}
                                   <tr >
                                     <td>{{ apartment.counter }}</td>
-                                    <td><a href="#" >{{ apartment.appartment_name }}</a></td>
+                                    <td><a href="#" >{{ apartment.Apartment_name }}</a></td>
                                     <td >{{ apartment.created_at }}</td>
                                     <td>{{ apartment.uploaded_by }}</td>
                                     
@@ -72,7 +72,7 @@
                                       <a  data-toggle="modal" data-target="#deletestoreProductModal" class="btn btn-sm btn-outline-danger"><i class="fas fas fas far fa-trash-alt"></i></a>
                                     </td>
                                   </tr>
-                                  {% include './component/view_appartment.html' %}
+                                  {% include './component/view_Apartment.html' %}
                                   {% endfor %}
                                 {% endif %}
                                 </tbody>
