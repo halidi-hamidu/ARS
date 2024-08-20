@@ -38,7 +38,7 @@ class ApartmentPage(View):
         get_apartment_posted = Apartment.objects.all()
         Apartment_posted = Apartment.objects.all().count()
         form = ApartmentForm()
-        template_name ='account/admin/Apartment.html'
+        template_name ='account/admin/apartment.html'
         context = {
             'form':form,
             'Apartment_posted':Apartment_posted,
@@ -55,4 +55,4 @@ class ApartmentPage(View):
                 return redirect('account:Apartment')
             else:
                 messages.error(request, 'POst not saved ')
-                return redirect('account:Apartment')
+                return redirect('account:apartment')
