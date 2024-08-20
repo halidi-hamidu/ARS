@@ -56,10 +56,10 @@ jobs:
         docker tag my-django-app:latest ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build_and_push
-    steps:
-    - name: Deploy to Server
-      run: |
-        ssh user@yourserver "docker pull ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest && docker-compose up -d"
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build_and_push
+  #   steps:
+  #   - name: Deploy to Server
+  #     run: |
+  #       ssh user@yourserver "docker pull ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest && docker-compose up -d"
