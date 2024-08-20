@@ -9,6 +9,8 @@
   <meta name="author" content="Halidy-coder">
   <link href="{% static 'img/logo/logo.jpg' %}" rel="icon"> 
   <title>ARS- {% block title %} {% endblock %}</title>
+  <link href="{% static './assets/css/bs5.min.css' %}" rel="stylesheet" >
+
   <script src="{% static './assets/js/demo/chart.js' %}"></script>
   <link href="{% static './assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static './assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
@@ -27,7 +29,15 @@
   <link rel="stylesheet" href="{% static './assets/css/dashboard.css' %}">
   <script src="{% static './assets/js/jquery.min.js' %}"></script>
   <script src="{% static './assets/js/chart.umd.js' %}"></script>
-
+  <style>
+    .card-header , .card-footer{
+      display: none !important;
+      padding: 260px  0px  !important;
+    }
+    .dataTables_wrapper{
+      padding: 30px 10px !important;
+    }
+  </style>
   
 </head>
 
@@ -150,6 +160,7 @@
 </div>
 
 
+<script src="{% static './assets/js/bs5.min.js' %}" ></script>
 
   
   <script src="{% static './assets/vendor/jquery/jquery.min.js' %}"></script>
@@ -166,7 +177,6 @@
   <script src="{% static './assets/vendor/clock-picker/clockpicker.js' %}"></script>
   <script src="{% static './assets/vendor/clock-picker/clockpicker.js' %}"></script>
   <script src="{% static './assets/js/demo/swetealert.js' %}"></script>
-
   
     <script>
       $(document).ready(function () {

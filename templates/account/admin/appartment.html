@@ -63,13 +63,16 @@
                                     
 
                                     <td>
-                                      <a data-toggle="modal" data-target="#productInStoredDetailViewModal" class="btn btn-sm btn-outline-primary text-primary"><i class="fas fas fa-eye"></i></a>
+                                      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight{{apartment.id}}" aria-controls="offcanvasRight"><i class="fas fas fa-eye"></i></button>
+
+                                      <!-- <a data-toggle="modal" data-target="#productInStoredDetailViewModal" class="btn btn-sm btn-outline-primary text-primary"></a> -->
                                       <!-- update button is here  -->
                                       <a  data-toggle="modal" data-target="#updateproductInStoreModal"
                                       class="btn btn-sm btn-outline-warning"  ><i class="fas fas fas fa-pen"></i></a>
                                       <a  data-toggle="modal" data-target="#deletestoreProductModal" class="btn btn-sm btn-outline-danger"><i class="fas fas fas far fa-trash-alt"></i></a>
                                     </td>
                                   </tr>
+                                  {% include './component/view_appartment.html' %}
                                   {% endfor %}
                                 {% endif %}
                                 </tbody>
