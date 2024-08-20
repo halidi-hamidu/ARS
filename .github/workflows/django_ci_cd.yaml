@@ -53,7 +53,7 @@ jobs:
 
     - name: Push Docker image
       run: |
-        docker tag my-django-app:latest ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest
+        docker tag ars-django-app:latest ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/my-django-app:latest
 
   # deploy:
