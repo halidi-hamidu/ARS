@@ -1,6 +1,29 @@
 from django.shortcuts import render
+from django.contrib.auth import login
+from django.contrib import messages
+from .forms import SignUpForm
+from django.shortcuts import redirect
+from django.contrib.auth import login, authenticate
+from .forms import CustomLoginForm
 
-# Create your views here.
+def login(request):
+    if request.method == 'POST':
+        form = CustomLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('login')  
+            else:
+                messages.error(request, "Invalid username or password.")
+    else:
+        form = CustomLoginForm()
+
+    return render(request, 'website/login.html', {'form': form})
+
 
 def homePage(request):
     template_name = 'website/index.html'
@@ -28,7 +51,7 @@ def team(request):
     context={}
     return render( request, template_name, context)
 
-def blog(request):
+def blog(request):    
     template_name = 'website/blog.html'
     context={}
     return render( request, template_name, context)
@@ -42,3 +65,20 @@ def terms(request):
     template_name = 'website/terms.html'
     context={}
     return render( request, template_name, context)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            login(request, user)
+            return redirect('home') 
+        else:
+            messages.error(request, "There were errors with your submission.")
+    else:
+        form = SignUpForm()
+    
+    return render(request, 'website/register.html', {'form': form})

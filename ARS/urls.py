@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls', namespace='website')),
-    path('auth/', include('account.urls', namespace='account'))
+    path('auth/', include('account.urls', namespace='account')),
 ]

@@ -13,7 +13,10 @@
       <title> ARS-{% block title %} {%endblock %}</title>
   
       <link rel="stylesheet" type="text/css" href="{%static './assets/css/bootstrap.min.css'%}">
-  
+      <link rel="stylesheet" href="{% static './assets/css/auth.css'%}">
+      <link rel="stylesheet" href="{% static './assets/css/reg.css'%}">
+
+
       <link rel="stylesheet" type="text/css" href="{% static './assets/css/font-awesome.css'%}">
   
       <link rel="stylesheet" href="{% static './assets/css/style.css' %}">
@@ -61,8 +64,8 @@
                                   </div>
                               </li>
                               <li><a href="{% url 'website:contact' %}">Contact</a></li> 
-                              <li><a href="#">Login</a></li>
-                              <li><a href="#">Register</a></li>
+                              <li><a href="{%url 'website:login'%}">Login</a></li>
+                              <li><a href="{%url 'website:register'%}">Register</a></li>
                           </ul>        
                           <a class='menu-trigger'>
                               <span>Menu</span>

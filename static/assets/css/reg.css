@@ -1,0 +1,46 @@
+:root {
+    --redColor: rgb(187, 5, 5);
+    --shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+}
+
+.signup_form_section .inner_section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup_form_section .inner_section form {
+    background-color: #f9f9f9; /* Lighter background for a sign-up form */
+    padding: 30px 40px; /* More padding for a sign-up form */
+    box-shadow: var(--shadow);
+    border-radius: 8px; /* Rounded corners */
+    max-width: 400px; /* Limit the form width */
+    width: 100%; /* Full width until max-width */
+}
+
+.signup_form_section .inner_section form input {
+    width: 100%;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 15px; /* Space between fields */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.signup_form_section .inner_section form input[type="submit"] {
+    width: 100%;
+    border: none; /* Remove default border */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--redColor); /* Primary color for the button */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.signup_form_section .inner_section form input[type="submit"]:hover {
+    background-color: darkred; /* Darker shade for hover effect */
+}
