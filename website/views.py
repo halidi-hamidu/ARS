@@ -66,6 +66,11 @@ def terms(request):
     context={}
     return render( request, template_name, context)
 
+def property_details(request):
+    template_name = 'website/property_details.html'
+    context={}
+    return render( request, template_name, context)
+
 
 def register(request):
     if request.method == 'POST':

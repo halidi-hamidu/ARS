@@ -45,8 +45,8 @@
                                   <tr>
                                     <th>#</th>
                                     <th>name</th>
-                                    <th>Date posted</th>
-                                    <th> posted by </th>
+                                    <th>Price</th>
+                                    <th> Location </th>
                                     <th>Action</th>
                                   </tr>
                                 </thead>
@@ -55,9 +55,9 @@
                                  {% for apartment in get_apartment_posted %}
                                   <tr >
                                     <td>{{ apartment.counter }}</td>
-                                    <td><a href="#" >{{ apartment.Apartment_name }}</a></td>
-                                    <td >{{ apartment.created_at }}</td>
-                                    <td>{{ apartment.uploaded_by }}</td>
+                                    <td>{{ apartment.apartment_name }}</td>
+                                    <td >{{ apartment.estimated_price }}</td>
+                                    <td>{{ apartment.location }}</td>
                                     
                                     
                                     
