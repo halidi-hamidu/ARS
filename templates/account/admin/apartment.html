@@ -1,5 +1,5 @@
 {% extends './base.html' %}
-{% block title %} login {% endblock %}
+{% block title %} Apartments {% endblock %}
 
 {% block content %}
 <div class="count_appartment_section">
@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="inner_section">
                 <div class="title">
-                    Appartment Posted
+                    Apartments Posted
                 </div>
                 <div class="count">
                     {{ appartment_posted }}
@@ -24,56 +24,73 @@
             <div class="col-md-4">
                 <form action="" enctype="multipart/form-data" method="post">
                     {% csrf_token %}
-                    {{form}}
+                    {{ form }}
                     <input type="submit" value="Save">
                 </form>
             </div>
             <div class="col-md-8">
-                <div class="tabe_section">
+                <div class="table_section">
                     <div class="container-fluid">
                       <div class="row">
                         <div class="col-xl-12 col-lg-12 mb-4">
                           <div class="card">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                             
+                              <!-- Add any header content here if needed -->
                             </div>
                             
                             <div class="table-responsive pl-2">
-                             
                               <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                                <thead class="" >
+                                <thead>
                                   <tr>
                                     <th>#</th>
-                                    <th>name</th>
+                                    <th>Name</th>
                                     <th>Price</th>
-                                    <th> Location </th>
+                                    <th>Location</th>
                                     <th>Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                  {% if get_apartment_posted %}
                                  {% for apartment in get_apartment_posted %}
-                                  <tr >
-                                    <td>{{ apartment.counter }}</td>
+                                  <tr>
+                                    <td>{{ forloop.counter }}</td>
                                     <td>{{ apartment.apartment_name }}</td>
-                                    <td >{{ apartment.estimated_price }}</td>
+                                    <td>{{ apartment.estimated_price }}</td>
                                     <td>{{ apartment.location }}</td>
-                                    
-                                    
-                                    
-
                                     <td>
-                                      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight{{apartment.id}}" aria-controls="offcanvasRight"><i class="fas fas fa-eye"></i></button>
+                                      <!-- Button to trigger offcanvas -->
+                                      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight{{ apartment.id }}" aria-controls="offcanvasRight">
+                                        <i class="fas fa-eye"></i>
+                                      </button>
 
-                                      <!-- <a data-toggle="modal" data-target="#productInStoredDetailViewModal" class="btn btn-sm btn-outline-primary text-primary"></a> -->
-                                      <!-- update button is here  -->
-                                      <a  data-toggle="modal" data-target="#updateproductInStoreModal"
-                                      class="btn btn-sm btn-outline-warning"  ><i class="fas fas fas fa-pen"></i></a>
-                                      <a  data-toggle="modal" data-target="#deletestoreProductModal" class="btn btn-sm btn-outline-danger"><i class="fas fas fas far fa-trash-alt"></i></a>
+                                      <!-- Offcanvas element -->
+                                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight{{ apartment.id }}" aria-labelledby="offcanvasRightLabel{{ apartment.id }}">
+                                        <div class="offcanvas-header">
+                                            <h5 id="offcanvasRightLabel{{ apartment.id }}">Apartment Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body">
+                                            <!-- Apartment Information -->
+                                            <h4>{{ apartment.apartment_name }}</h4>
+                                            <p><strong>Location:</strong> {{ apartment.location }}</p>
+                                            <p><strong>Price:</strong> {{ apartment.estimated_price }}</p>
+                                               <!-- Display Image -->
+                                               {% if apartment.image %}
+                                               <img src="{{ apartment.image.url }}" alt="{{ apartment.apartment_name }}" class="img-fluid">
+                                             {% else %}
+                                               <p>No image available</p>
+                                             {% endif %}
+                                            <p><strong>Description:</strong> {{ apartment.description }}</p>
+
+                                        </div>
+                                      </div>
+                                      
+                                      <!-- Update and Delete Buttons -->
+                                      <a data-toggle="modal" data-target="#updateProductInStoreModal{{ apartment.id }}" class="btn btn-sm btn-outline-warning"><i class="fas fa-pen"></i></a>
+                                      <a data-toggle="modal" data-target="#deleteProductModal{{ apartment.id }}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                   </tr>
-                                  {% include './component/view_apartment.html' %}
-                                  {% endfor %}
+                                 {% endfor %}
                                 {% endif %}
                                 </tbody>
                               </table>
@@ -90,5 +107,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
