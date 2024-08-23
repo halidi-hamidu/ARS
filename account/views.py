@@ -59,3 +59,4 @@ class ApartmentPage(View):
 def logoutUser(request):
     logout(request)
     return redirect('account:login')  # Adjust this to the actual login URL name
+
