@@ -6,24 +6,22 @@ from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate
 from .forms import CustomLoginForm
 
-def login(request):
+# Login View
+def loginPage(request):
     if request.method == 'POST':
-        form = CustomLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+        get_username = request.POST.get('username')
+        get_password = request.POST.get('password')
 
-            if user is not None:
-                login(request, user)
-                return redirect('login')  
-            else:
-                messages.error(request, "Invalid username or password.")
-    else:
-        form = CustomLoginForm()
+        user = authenticate(username=get_username, password=get_password)
 
-    return render(request, 'website/login.html', {'form': form})
+        if user is not None:
+            login(request, user)
+            return redirect('website:dashboard')  # Adjust this to your actual URL name
 
+    form = CustomLoginForm()
+    template_name = 'website/login.html'
+    context = {'form': form}
+    return render(request, template_name, context)
 
 def homePage(request):
     template_name = 'website/index.html'
@@ -79,11 +77,20 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            login(request, user)
-            return redirect('home') 
+            messages.success(request, "Registration successful.")   
+
+            return redirect('website:loginPage') 
         else:
             messages.error(request, "There were errors with your submission.")
+
+            return redirect('website:register')
     else:
         form = SignUpForm()
     
     return render(request, 'website/register.html', {'form': form})
+
+def dashboard(request):
+        template_name = 'website/dashboard.html'
+        context = {}
+        return render(request, template_name, context)
+    

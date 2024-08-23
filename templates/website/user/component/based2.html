@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Halidy-coder">
+  <link href="{% static 'img/logo/logo.jpg' %}" rel="icon"> 
+  <title>ARS - {% block title %} {% endblock %}</title>
+  <link href="{% static 'assets/css/bs5.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/css/ruang-admin.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/chart.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/select2/dist/css/select2.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/clock-picker/clockpicker.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/ruang-admin.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/dashboard.css' %}" rel="stylesheet">
+  <style>
+    .card-header, .card-footer {
+      display: none !important;
+      padding: 260px 0px !important;
+    }
+    .dataTables_wrapper {
+      padding: 30px 10px !important;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom"></div>
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-color: #000;">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+          <span><h3>REALESTATE </span>
+        </div> 
+        <div class="sidebar-brand-text mx-3">solution</div>
+      </a>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed & maintained by
+              <b><a href="https://halidy-coder.gitlab.io/" target="_blank">RSA-Team</a></b>
+            </span>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
+  </div>
+
+  <script src="{% static 'assets/js/bs5.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/js/ruang-admin.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/js/demo/chart-area-demo.js' %}"></script>
+  <script src="{% static 'assets/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/select2/dist/js/select2.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js' %}"></script>
+  <script src="{% static 'assets/vendor/clock-picker/clockpicker.js' %}"></script>
+  <script src="{% static 'assets/js/demo/swetealert.js' %}"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable(); 
+      $('#dataTableHover').DataTable(); 
+      $('.select2-single').select2();
+      $('#id_uploaded_by').select2({
+        placeholder: "Select User",
+        allowClear: true
+      });
+      $('#id_apartment_type').select2({
+        placeholder: "Select Type",
+        allowClear: true
+      });
+    });
+  </script>
+
+  <!-- SweetAlert messages -->
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+      <script>
+        var m = "{{ message }}";
+        swal({
+          position: 'top-right',
+          icon: 'success',
+          title: "Success",
+          text: m,
+          showConfirmButton: true,
+        });
+      </script>
+    {% elif message.tags == 'info' %}
+      <script>
+        var m = "{{ message }}";
+        swal({
+          position: 'top-right',
+          icon: 'info',
+          title: "Info",
+          text: m,
+          showConfirmButton: true,
+        });
+      </script>
+    {% elif message.tags == 'error' %}
+      <script>
+        var m = "{{ message }}";
+        swal({
+          position: 'top-right',
+          icon: 'error',
+          title: "Error",
+          text: m,
+          showConfirmButton: true,
+        });
+      </script>
+    {% endif %}
+  {% endfor %}
+  
+</body>
+</html>

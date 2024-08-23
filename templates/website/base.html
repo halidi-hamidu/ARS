@@ -20,6 +20,18 @@
       <link rel="stylesheet" type="text/css" href="{% static './assets/css/font-awesome.css'%}">
   
       <link rel="stylesheet" href="{% static './assets/css/style.css' %}">
+      <link href="{% static 'assets/css/bs5.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/css/ruang-admin.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/chart.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/select2/dist/css/select2.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/clock-picker/clockpicker.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/ruang-admin.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/dashboard.css' %}" rel="stylesheet">
   
       </head>
       
@@ -64,7 +76,7 @@
                                   </div>
                               </li>
                               <li><a href="{% url 'website:contact' %}">Contact</a></li> 
-                              <li><a href="{%url 'website:login'%}">Login</a></li>
+                              <li><a href="{%url 'website:loginPage'%}">Login</a></li>
                               <li><a href="{%url 'website:register'%}">Register</a></li>
                           </ul>        
                           <a class='menu-trigger'>
@@ -107,9 +119,61 @@
     <script src="{%static './assets/js/imgfix.min.js'%}"></script> 
     <script src="{%static './assets/js/mixitup.js'%}"></script> 
     <script src="{%static './assets/js/accordions.js'%}"></script>
+    <script src="{% static 'assets/js/bs5.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/js/ruang-admin.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/js/demo/chart-area-demo.js' %}"></script>
+  <script src="{% static 'assets/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/select2/dist/js/select2.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js' %}"></script>
+  <script src="{% static 'assets/vendor/clock-picker/clockpicker.js' %}"></script>
+  <script src="{% static 'assets/js/demo/swetealert.js' %}"></script>
     
     <!-- Global Init -->
     <script src="{%static './assets/js/custom.js'%}"></script>
+
+     <!-- SweetAlert messages -->
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+    <script>
+      var m = "{{ message }}";
+      swal({
+        position: 'top-right',
+        icon: 'success',
+        title: "Success",
+        text: m,
+        showConfirmButton: true,
+      });
+    </script>
+  {% elif message.tags == 'info' %}
+    <script>
+      var m = "{{ message }}";
+      swal({
+        position: 'top-right',
+        icon: 'info',
+        title: "Info",
+        text: m,
+        showConfirmButton: true,
+      });
+    </script>
+  {% elif message.tags == 'error' %}
+    <script>
+      var m = "{{ message }}";
+      swal({
+        position: 'top-right',
+        icon: 'error',
+        title: "Error",
+        text: m,
+        showConfirmButton: true,
+      });
+    </script>
+  {% endif %}
+{% endfor %}
 
     </body>
 </html>
