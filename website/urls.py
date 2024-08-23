@@ -15,5 +15,6 @@ urlpatterns = [
     path('loginPage/', views.loginPage, name='loginPage'),
     path('register/', views.register, name='register'),
     path('property_details/', views.property_details,name='property_details'),
-    path('dashboard/' ,views.dashboard ,name='dashboard')
+    path('dashboard/' ,views.dashboard ,name='dashboard'),
+    path('apartment', views.apartment,name='apartment'),
 ]
