@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{%static './assets/css/bootstrap.min.css'%}">
   <link rel="stylesheet" href="{% static './assets/css/auth.css'%}">
   <link rel="stylesheet" href="{% static './assets/css/reg.css'%}">
+  <link rel="stylesheet" href="{% static './assets/css/pay.css'%}">
 
 
   <link rel="stylesheet" type="text/css" href="{% static './assets/css/font-awesome.css'%}">
@@ -57,11 +58,17 @@
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'website:apartment' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-home"></i>
           <span>Apartment</span>
         </a>
       </li>
-      
+      {% comment %} <li class="nav-item active">
+        <a class="nav-link" href="{% url 'website:payme' %}">
+          <i class="fas fa-credit-card"></i> 
+                    <span>Payment</span>
+          </a>
+          </li> {% endcomment %}
+                
     </ul>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -133,6 +140,7 @@
   <script src="{% static 'assets/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js' %}"></script>
   <script src="{% static 'assets/vendor/clock-picker/clockpicker.js' %}"></script>
   <script src="{% static 'assets/js/demo/swetealert.js' %}"></script>
+  <script src="{% static 'assets/js/pay.js' %}"></script>
 
   <script>
     $(document).ready(function () {

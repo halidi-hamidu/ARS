@@ -95,7 +95,11 @@ def dashboard(request):
         return render(request, template_name, context)
 
 def apartment(request):
-        template_name = 'website/apartment.html'
-        context = {}
-        return render(request, template_name, context)  
-    
+        template_name ='website/properties.html'
+        context ={}
+        return render(request,template_name, context)
+
+def paymentPage(request):
+        template_name ='website/payment1.html'
+        context ={}
+        return render(request,template_name, context)
