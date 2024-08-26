@@ -1,10 +1,66 @@
 from django.shortcuts import render
-from django.contrib.auth import login
 from django.contrib import messages
 from .forms import SignUpForm
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate
 from .forms import CustomLoginForm
+# website/views.py
+from .forms import BillingAddressForm, PaymentForm
+# from .models import PaymentHistory
+# from .models import PaymentHistory
+from .models import *
+
+
+def payment_history(request):
+    # Query the PaymentHistory model to get the payment history for the user
+    payments = Payment.objects.filter(user=request.user)
+    return render(request, 'website/payment_history.html', {'payments': payments})
+
+
+def paymentPage(request):
+    if request.method == 'POST':
+        billing_form = BillingAddressForm(request.POST)
+        payment_form = PaymentForm(request.POST)
+
+        if billing_form.is_valid() and payment_form.is_valid():
+            # Save forms to get instances
+            billing_address = billing_form.save()
+            payment = payment_form.save()
+
+            # Compute the amount here
+            amount = compute_amount()  # Replace with actual computation or retrieval
+            if billing_address and payment :
+                print("---------",billing_address)
+            # Create PaymentHistory instance
+
+                # PaymentHistory.objects.create(
+                #     user=request.user,
+                #     billing_address=billing_address,
+                #     payment=payment,
+        
+                #     amount=amount,
+                # )
+                messages.success(request, "Payment successfully processed!")
+                return redirect('website:dashboard')  # Redirect after successful form submission
+            else:
+                messages.success(request, "Paymen Erorr!")
+                return redirect('website:dashboard')  # Redirect after successful form submission
+
+
+
+    else:
+        billing_form = BillingAddressForm()
+        payment_form = PaymentForm()
+
+    return render(request, 'website/payment1.html', {
+        'form': billing_form,
+        'payment_form': payment_form,
+    })
+
+def compute_amount():
+    # Example function to compute amount
+    return 100.00  # 
+
 
 # Login View
 def loginPage(request):
@@ -91,7 +147,10 @@ def register(request):
 
 def dashboard(request):
         template_name = 'website/dashboard.html'
-        context = {}
+        get_user_history = Payment.objects.filter(user = request.user)
+        context = {
+            'get_user_history':get_user_history
+        }
         return render(request, template_name, context)
 
 def apartment(request):
@@ -99,7 +158,3 @@ def apartment(request):
         context ={}
         return render(request,template_name, context)
 
-def paymentPage(request):
-        template_name ='website/payment1.html'
-        context ={}
-        return render(request,template_name, context)

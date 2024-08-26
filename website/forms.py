@@ -3,6 +3,34 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
+from django import forms
+from .models import BillingAddress, Payment
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ['card_name', 'card_number', 'exp_month', 'exp_year', 'cvv', 'amount']
+        widgets = {
+            'card_number': forms.TextInput(attrs={'type': 'text', 'placeholder': 'Card Number'}),
+            'cvv': forms.TextInput(attrs={'type': 'password', 'placeholder': 'CVV'}),
+            'exp_month': forms.Select(attrs={'class': 'form-control'}),
+            'exp_year': forms.Select(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+        }
+
+class BillingAddressForm(forms.ModelForm):
+    class Meta:
+        model = BillingAddress
+        fields = ['full_name', 'email', 'address', 'city', 'state', 'zip_code']
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
+            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=150, label='Username')
@@ -45,3 +73,5 @@ class SignUpForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+    

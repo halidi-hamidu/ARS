@@ -18,5 +18,6 @@ urlpatterns = [
     path('dashboard/' ,views.dashboard ,name='dashboard'),
     path('apartment', views.apartment,name='apartment'),
     path('payment1/', views.paymentPage,name='payment1'),
+    path('payment-history/', views.payment_history, name='payment_history'),
     
 ]
