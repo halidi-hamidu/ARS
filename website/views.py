@@ -10,6 +10,10 @@ from .forms import BillingAddressForm, PaymentForm
 # from .models import PaymentHistory
 from .models import *
 
+# def property_list(request):
+#     houses = House.objects.all()
+#     return render(request, 'website/property_list.html', {'houses': houses})
+
 
 def payment_history(request):
     # Query the PaymentHistory model to get the payment history for the user

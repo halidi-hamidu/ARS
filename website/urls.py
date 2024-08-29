@@ -19,5 +19,6 @@ urlpatterns = [
     path('apartment', views.apartment,name='apartment'),
     path('payment1/', views.paymentPage,name='payment1'),
     path('payment-history/', views.payment_history, name='payment_history'),
+    # path('', views.property_list, name='property_list'),
     
 ]

@@ -51,3 +51,21 @@ class PaymentHistory(models.Model):
 
     def __str__(self):
         return f"Payment by {self.billing_address.full_name} on {self.date}"
+
+
+class House(models.Model):
+    name = models.CharField(max_length=100, default='Name')
+    location = models.CharField(max_length=100, default='location')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    description = models.TextField( default="Descriptions")
+    image_name = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.name
+    
+class Image(models.Model):
+    name = models.CharField(max_length=100 )
+    image_name = models.ImageField(upload_to='images/')
+    
+    def __str__(self):
+        return self.name    

@@ -1,0 +1,35 @@
+{% extends './user/component/based2.html' %}  <!-- Extend your base template -->
+{% load static %}  <!-- Load static files -->
+{% block content %}
+
+    <!-- ***** Property Listings Start ***** -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                {% if houses %}
+                    {% for house in houses %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                <!-- Display image uploaded by admin -->
+                                <img src="{{ house.image.url }}" alt="{{ house.name }}" class="img-fluid">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ house.name }}</h5>
+                                    <p class="card-text"><strong>Location:</strong> {{ house.location }}</p>
+                                    <p class="card-text"><strong>Price:</strong> ${{ house.price }}</p>
+                                    <p class="card-text"><strong>Description:</strong> {{ house.description }}</p>
+                                    <a href="{% url 'make_order' house.id %}" class="btn btn-primary mt-auto">Make Order</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-12">
+                        <p>No houses available at the moment.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ***** Property Listings End ***** -->
+
+{% endblock %}

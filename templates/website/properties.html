@@ -262,6 +262,45 @@
         </div>
     </section>
     <!-- ***** Fleet Ends ***** -->
+     {% if houses %}
+  <div class="houses">
+    <div class="container">
+      <div class="row">
+        {% for house in houses %}
+        <div class="col-md-4">
+          <div class="items">
+            <div class="card">
+              <img src="{{ house.image_name.url }}" alt="" srcset="" class="img-fluid">
+              <div class="card-body">
+                <h5 class="card-title">{{ house.name }}</h5>
+                <p class="card-text"><strong>Location:</strong> {{ house.location }}</p>
+                <p class="card-text"><strong>Price:</strong> ${{ house.price }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ house.description }}</p>
+                <!-- Button to open the order page -->
+                <a href="{% url 'make_order' house.id %}" class="btn btn-primary mt-auto">
+                  Make Order
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="empty_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="item">
+            <p>No houses available at the moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
 
     
 
