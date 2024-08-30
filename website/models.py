@@ -54,18 +54,29 @@ class PaymentHistory(models.Model):
 
 
 class House(models.Model):
+    STATUS_CHOICES = [
+        ('sale', 'For Sale'),
+        ('rent', 'For Rent'),
+    ]
+
     name = models.CharField(max_length=100, default='Name')
     location = models.CharField(max_length=100, default='location')
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    description = models.TextField( default="Descriptions")
+    description = models.TextField(default="Descriptions")
     image_name = models.ImageField(upload_to='images/')
+    status = models.CharField(max_length=4, choices=STATUS_CHOICES, default='sale')
+    size = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    email = models.EmailField(max_length=254, default='example@example.com')  # Added email field
+    contact_number = models.CharField(max_length=15, default='000-000-0000')  # Added contact number field
+    map_url = models.CharField(max_length=800, default='http://maps.google.com/')  # Added map URL field
+
 
     def __str__(self):
         return self.name
     
 class Image(models.Model):
     name = models.CharField(max_length=100 )
-    image_name = models.ImageField(upload_to='images/')
+    image_name = models.ImageField(upload_to='media/')
     
     def __str__(self):
         return self.name    

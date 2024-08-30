@@ -1,7 +1,7 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.contrib import messages
 from .forms import SignUpForm
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render , get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import CustomLoginForm
 # website/views.py
@@ -124,9 +124,12 @@ def terms(request):
     context={}
     return render( request, template_name, context)
 
-def property_details(request):
+def property_details(request, id):
+    get_property = get_object_or_404(House, pk=id)
     template_name = 'website/property_details.html'
-    context={}
+    context={
+        'house':get_property
+    }
     return render( request, template_name, context)
 
 
@@ -158,7 +161,13 @@ def dashboard(request):
         return render(request, template_name, context)
 
 def apartment(request):
+        get_houses= House.objects.all()
+
         template_name ='website/properties.html'
-        context ={}
+        context ={
+            'houses':get_houses 
+        }
         return render(request,template_name, context)
+
+
 

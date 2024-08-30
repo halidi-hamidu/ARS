@@ -9,6 +9,14 @@ from django.contrib import messages
 from django.views import View
 from .models import Apartment
 from .forms import ApartmentForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def custom_logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('account/auth/login')  # Redirect to the login page after logout
+
 
 class ApartmentPage(View):
     def update_apartment(self, request, apartment_id):
