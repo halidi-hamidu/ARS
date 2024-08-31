@@ -5,10 +5,26 @@ from django.shortcuts import redirect, render , get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import CustomLoginForm
 # website/views.py
-from .forms import BillingAddressForm, PaymentForm
+# from .forms import BillingAddressForm, PaymentForm
 # from .models import PaymentHistory
 # from .models import PaymentHistory
 from .models import *
+from django.http import HttpResponse
+from .forms import CreditCardPaymentFormWithName
+
+def payment1_view(request):
+    if request.method == 'POST':
+        form = CreditCardPaymentFormWithName(request.POST)
+        if form.is_valid():
+            messages.success(request, "Payment successfully processed!")
+            return redirect('website:dashboard')
+            # return HttpResponse("Payment Successful")
+        else:
+            return render(request, 'website/ayment1.html', {'form': form})
+    else:
+        form = CreditCardPaymentFormWithName(action="/payment1/")
+        return render(request, 'website/payment1.html', {'form': form})
+
 
 # def property_list(request):
 #     houses = House.objects.all()
@@ -21,45 +37,45 @@ def payment_history(request):
     return render(request, 'website/payment_history.html', {'payments': payments})
 
 
-def paymentPage(request):
-    if request.method == 'POST':
-        billing_form = BillingAddressForm(request.POST)
-        payment_form = PaymentForm(request.POST)
+# def paymentPage(request):
+#     if request.method == 'POST':
+#         billing_form = BillingAddressForm(request.POST)
+#         payment_form = PaymentForm(request.POST)
 
-        if billing_form.is_valid() and payment_form.is_valid():
-            # Save forms to get instances
-            billing_address = billing_form.save()
-            payment = payment_form.save()
+#         if billing_form.is_valid() and payment_form.is_valid():
+#             # Save forms to get instances
+#             billing_address = billing_form.save()
+#             payment = payment_form.save()
 
-            # Compute the amount here
-            amount = compute_amount()  # Replace with actual computation or retrieval
-            if billing_address and payment :
-                print("---------",billing_address)
-            # Create PaymentHistory instance
+#             # Compute the amount here
+#             amount = compute_amount()  # Replace with actual computation or retrieval
+#             if billing_address and payment :
+#                 print("---------",billing_address)
+#             # Create PaymentHistory instance
 
-                # PaymentHistory.objects.create(
-                #     user=request.user,
-                #     billing_address=billing_address,
-                #     payment=payment,
+#                 # PaymentHistory.objects.create(
+#                 #     user=request.user,
+#                 #     billing_address=billing_address,
+#                 #     payment=payment,
         
-                #     amount=amount,
-                # )
-                messages.success(request, "Payment successfully processed!")
-                return redirect('website:dashboard')  # Redirect after successful form submission
-            else:
-                messages.success(request, "Paymen Erorr!")
-                return redirect('website:dashboard')  # Redirect after successful form submission
+#                 #     amount=amount,
+#                 # )
+#                 messages.success(request, "Payment successfully processed!")
+#                 return redirect('website:dashboard')  # Redirect after successful form submission
+#             else:
+#                 messages.success(request, "Paymen Erorr!")
+#                 return redirect('website:dashboard')  # Redirect after successful form submission
 
 
 
-    else:
-        billing_form = BillingAddressForm()
-        payment_form = PaymentForm()
+#     else:
+#         billing_form = BillingAddressForm()
+#         payment_form = PaymentForm()
 
-    return render(request, 'website/payment1.html', {
-        'form': billing_form,
-        'payment_form': payment_form,
-    })
+#     return render(request, 'website/payment1.html', {
+#         'form': billing_form,
+#         'payment_form': payment_form,
+#     })
 
 def compute_amount():
     # Example function to compute amount

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import payment1_view
 app_name ='website'
 
 urlpatterns =[
@@ -17,8 +18,9 @@ urlpatterns =[
     path('property_details/<str:id>/', views.property_details,name='property_details'),
     path('dashboard/' ,views.dashboard ,name='dashboard'),
     path('apartment', views.apartment,name='apartment'),
-    path('payment1/', views.paymentPage,name='payment1'),
-    path('payment_history/<str:id>/', views.payment_history, name='payment_history'),
+    # path('payment/', payment_view, name='payment'),
+    path('payment1/', views.payment1_view, name='payment1'),
+    path('payment_history/', views.payment_history, name='payment_history'),
     # path('', views.property_list, name='property_list'),
 ]    
 
