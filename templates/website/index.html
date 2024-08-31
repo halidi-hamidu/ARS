@@ -51,7 +51,7 @@
 
                             <ul class="social-icons">
 
-                                <li><a href="#" id="viewMoreLink">+ View More</a></li>
+                                <li><a href="#" class="viewMoreLink">+ View More</a></li>
 
                             </ul>
                         </div>
@@ -60,7 +60,7 @@
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="{% static './assets/images/product-2-720x480.jpg' %}" alt="">
+                            <img src="{% static './assets/images/product-1-720x480.jpg' %}" alt="">
                         </div>
                         <div class="down-content">
                             <span>
@@ -72,7 +72,9 @@
                             <p>House &nbsp;/&nbsp; For Sale &nbsp;/&nbsp; 100 sq m &nbsp;/&nbsp; 2010</p>
 
                             <ul class="social-icons">
-                                <li><a href="property-details.html" id="viewMoreLink">+ View More</a></li>
+
+                                <li><a href="#" class="viewMoreLink">+ View More</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -80,7 +82,7 @@
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="{%static 'assets/images/product-3-720x480.jpg'%}" alt="">
+                            <img src="{% static './assets/images/product-1-720x480.jpg' %}" alt="">
                         </div>
                         <div class="down-content">
                             <span>
@@ -92,7 +94,9 @@
                             <p>House &nbsp;/&nbsp; For Sale &nbsp;/&nbsp; 100 sq m &nbsp;/&nbsp; 2010</p>
 
                             <ul class="social-icons">
-                                <li><a href="#" id="viewMoreLink">+ View More</a></li>
+
+                                <li><a href="#" class="viewMoreLink">+ View More</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -210,34 +214,39 @@
 
    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  document.getElementById('viewMoreLink').addEventListener('click', function(event) {
-    // Prevent the default action
-    event.preventDefault();
-
-    Swal.fire({
-      title: "<strong>Sign In Required</strong>",
-      html: `
-        <p>Please sign in to continue viewing more details.</p>
-        <p>If you don't have an account, <a href="/register" style="color: #F8BB86;">register here</a>.</p>
-      `,
-      icon: 'info',
-      confirmButtonText: 'Sign In',
-      confirmButtonColor: '#3085d6',
-      cancelButtonText: 'Cancel',
-      cancelButtonColor: '#d33',
-      showCancelButton: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Redirect to the sign-in page or show sign-in form
-        window.location.href = '/loginPage';
-      } else if (result.isDismissed) {
-        // Optional: Redirect to the property details page if the user cancels
-        window.location.href = event.target.href;
-      }
-    });
-  });
-</script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      // Use querySelectorAll to get all elements with the class 'viewMoreLink'
+      document.querySelectorAll('.viewMoreLink').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          // Prevent the default action
+          event.preventDefault();
+    
+          Swal.fire({
+            title: "<strong>Sign In Required</strong>",
+            html: `
+              <p>Please sign in to continue viewing more details.</p>
+              <p>If you don't have an account, <a href="/register" style="color: #F8BB86;">register here</a>.</p>
+            `,
+            icon: 'info',
+            confirmButtonText: 'Sign In',
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: 'Cancel',
+            cancelButtonColor: '#d33',
+            showCancelButton: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirect to the sign-in page or show sign-in form
+              window.location.href = '/loginPage';
+            } else if (result.isDismissed) {
+              // Redirect to the property details page if the user cancels
+              window.location.href = link.href;
+            }
+          });
+        });
+      });
+    </script>
+    
 
 
   </body>

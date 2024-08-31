@@ -5,7 +5,6 @@ app_name ='website'
 
 urlpatterns =[
     path('', views.homePage, name='homePage'),
-    # path('home/',views.homePage ,name ='home'),
     path('properties/', views.properties, name='properties'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
@@ -19,7 +18,7 @@ urlpatterns =[
     path('dashboard/' ,views.dashboard ,name='dashboard'),
     path('apartment', views.apartment,name='apartment'),
     path('payment1/', views.paymentPage,name='payment1'),
-    path('payment-history/', views.payment_history, name='payment_history'),
+    path('payment_history/<str:id>/', views.payment_history, name='payment_history'),
     # path('', views.property_list, name='property_list'),
 ]    
 

@@ -169,5 +169,8 @@ def apartment(request):
         }
         return render(request,template_name, context)
 
-
-
+def payment_history(request, id):
+        payment_history = get_object_or_404(PaymentHistory, id=id)
+        template_name = 'website/payment_history.html'
+        context={}
+        return render(request,template_name, context)
