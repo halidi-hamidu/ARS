@@ -1,11 +1,9 @@
-
-
-{% extends "./user/component/based2.html" %}
+{% extends "user/component/based2.html" %}
 {% block title %}Payment History{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Payment History</h1>
+    <h1>Payment History1</h1>
     <table class="table">
         <thead>
             <tr>
@@ -13,6 +11,7 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Address</th>
+                <th>Method</th>
                 <th>Amount</th>
                 <th>Card Name</th>
             </tr>
@@ -20,12 +19,13 @@
         <tbody>
             {% for payment in payment1 %}
             <tr>
-                <td>{{ payment.date }}</td>
-                {% comment %} <td>{{ payment.full_name }}</td> {% endcomment %}
-                <td>{{ payment.email }}</td>
-                <td>{{ payment.address }}</td>
-                <td>${{ payment.amount }}</td>
-                <td>{{ payment.card_name }}</td>
+                <td>{{ payment1.date }}</td>
+                <td>{{ BillingAddress.full_name }}</td>
+                <td>{{ BillingAddress.email }}</td>
+                <td>{{ payment1.method }}</td>
+                <td>{{ payment1.address }}</td>
+                <td>${{ payment1.amount }}</td>
+                <td>{{ payment1.card_name }}</td>
             </tr>
             {% empty %}
             <tr>

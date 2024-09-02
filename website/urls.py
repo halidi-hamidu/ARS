@@ -20,7 +20,7 @@ urlpatterns =[
     path('apartment', views.apartment,name='apartment'),
     # path('payment/', payment_view, name='payment'),
     path('payment1/', views.payment1_view, name='payment1'),
-    path('payment_history/', views.payment_history, name='payment_history'),
+    path('payment_history', views.payment_history, name='payment_history'),
     # path('', views.property_list, name='property_list'),
 ]    
 

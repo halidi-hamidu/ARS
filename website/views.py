@@ -5,25 +5,35 @@ from django.shortcuts import redirect, render , get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import CustomLoginForm
 # website/views.py
-# from .forms import BillingAddressForm, PaymentForm
+from .forms import PaymentForm
 # from .models import PaymentHistory
 # from .models import PaymentHistory
 from .models import *
 from django.http import HttpResponse
-from .forms import CreditCardPaymentFormWithName
+# from .forms import CreditCardPaymentFormWithName
 
 def payment1_view(request):
+
     if request.method == 'POST':
-        form = CreditCardPaymentFormWithName(request.POST)
+        form = PaymentForm(request.POST)
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save() 
             messages.success(request, "Payment successfully processed!")
             return redirect('website:dashboard')
             # return HttpResponse("Payment Successful")
         else:
-            return render(request, 'website/ayment1.html', {'form': form})
+            return redirect('website:payment1')
     else:
-        form = CreditCardPaymentFormWithName(action="/payment1/")
-        return render(request, 'website/payment1.html', {'form': form})
+        form = PaymentForm()
+        get_paymentInformation = Payment.objects.filter(user=request.user)
+        context = {
+            'get_paymentInformation': get_paymentInformation,
+            'form': form
+
+        }
+        return render(request, 'website/payment1.html', context)
 
 
 # def property_list(request):
@@ -33,8 +43,8 @@ def payment1_view(request):
 
 def payment_history(request):
     # Query the PaymentHistory model to get the payment history for the user
-    payments = Payment.objects.filter(user=request.user)
-    return render(request, 'website/payment_history.html', {'payments': payments})
+    payments = PaymentHistory.objects.all().order_by('-date')  # Adjust as necessary to filter or order payments
+    return render(request, 'website/payment_history.html', {'payment1': payments})
 
 
 # def paymentPage(request):

@@ -1,20 +1,142 @@
 {% extends './user/component/based2.html' %}
 {% load static %}
-{% block title %}Payment1{% endblock %}
+{% block title %}Payment Form{% endblock %}
 
 {% block content %}
+<head>
+    <style>
+        /* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Form Styles */
+form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h1.title {
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: #444;
+    font-weight: 600;
+}
+
+/* Input Box Styles */
+.inputBox {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.inputBox input,
+.inputBox select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 4px; /* Add margin to separate input from label */
+}
+
+/* Remove spinner for number inputs */
+.inputBox input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.inputBox input[type="number"]::-webkit-inner-spin-button,
+.inputBox input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    margin: 0;
+}
+
+/* Flex Container for Input Boxes */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between input boxes */
+    margin-bottom: 24px;
+}
+
+.form-col {
+    flex: 1;
+    min-width: 240px; /* Ensure input boxes are responsive */
+}
+
+/* Submit Button Styles */
+.submit_btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #e74c3c; /* Modern red color */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit_btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-col {
+        flex: none;
+        width: 100%;
+    }
+}
+
+    </style>
+
+</head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <h1>Payment Form</h1>
-    <form action="{{ form.action }}" method="{{ form.method }}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit Payment</button>
-    </form>
+    <div class="container">
+        <h1>Payment Form</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <!-- Render form fields as paragraphs -->
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Payment</button>
+        </form>
+    
     <script>
         // Example of handling form submission with SweetAlert2
         document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent the default form submission
             Swal.fire({
                 title: 'Confirm Payment',
                 text: 'Are you sure you want to proceed with the payment?',
@@ -24,13 +146,10 @@
                 cancelButtonText: 'No, cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    event.target.submit();
+                    event.target.submit(); // Submit the form if confirmed
                 }
             });
         });
     </script>
-</body>
-</html>
-
-
+</div>
 {% endblock %}

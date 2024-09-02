@@ -50,9 +50,14 @@ class Payment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     method = models.CharField(max_length=10, choices=PAYMENT_METHODS)
+    address = models.CharField(max_length=255, blank=True, null=True,default='Address')
     status = models.CharField(max_length=10, choices=PAYMENT_STATUSES, default='P')
     transaction_id = models.CharField(max_length=255, blank=True, null=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    name_card = models.CharField(max_length=100, blank=True, null=True)
+    card_number = models.CharField(max_length=16, blank=True, null=True)
+    card_expiry = models.CharField(max_length=5, blank=True, null=True)
+    card_cvv = models.CharField(max_length=4, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:

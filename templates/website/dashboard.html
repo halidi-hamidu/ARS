@@ -18,12 +18,12 @@
         <tbody>
             {% for payment in get_user_history %}
             <tr>
-                <td>{{ payment.date }}</td>
-                {% comment %} <td>{{ payment.full_name }}</td> {% endcomment %}
-                <td>{{ payment.email }}</td>
+                <td>{{ payment.created_at }}</td>
+                <td>{{ payment.user.first_name }}</td>
+                <td>{{ payment.user.email }}</td>
                 <td>{{ payment.address }}</td>
-                <td>${{ payment.amount }}</td>
-                <td>{{ payment.card_name }}</td>
+                <td>Tsh {{ payment.amount }}</td>
+                <td>{{ payment.name_card }}</td>
             </tr>
             {% empty %}
             <tr>

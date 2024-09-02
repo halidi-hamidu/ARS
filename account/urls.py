@@ -14,10 +14,7 @@ urlpatterns = [
     path('dashboard/', views.dashboardPage, name='dashboard'),
     path('apartment/', ApartmentPage.as_view(), name='apartment'), 
     path('logout/', custom_logout_view, name='logout'),
-    # Ensure the URL name and pattern are correct
-    # path('apartment/<int:pk>/edit/', views.apartment_edit, name='edit_apartment'),
-    # path('apartment/<int:pk>/delete/', views.apartment_delete, name='delete_apartment'),
-    # Other URLs...
+#path('delete_apartment/<int:id>/', views.delete_apartment, name='delete_apartment'),
 ]
 
 # Serve media files during development

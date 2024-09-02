@@ -58,14 +58,11 @@ class ApartmentPage(View):
 #     return render(request, 'account/admin/component/edit_apartment.html', {'form': form, 'apartment': apartment})
 
 # # Delete Apartment View
-# def apartment_delete(request, pk):
-#     apartment = get_object_or_404(Apartment, pk=pk)
-#     if request.method == "POST":
+# def delete_apartment(request, id):
+#     if request.method == 'POST':
+#         apartment = get_object_or_404(Apartment, id=id)
 #         apartment.delete()
-#         messages.success(request, 'Apartment deleted successfully.')
-#         return redirect('account:apartment')  # Redirect to the list of apartments
-#     return render(request, 'account/admin/component/confirm_delete.html', {'apartment': apartment})
-
+#         return redirect('your_redirect_url')  
 # Login View
 def loginPage(request):
     if request.method == 'POST':
