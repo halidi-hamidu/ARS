@@ -87,29 +87,29 @@
                                       
                                       <!-- Edit and Delete Buttons -->
                                       <!-- Edit Button Triggering Modal -->
-                                      <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editApartmentModal{{ apartment.id }}">
-                                        <i class="fas fa-pen"></i>
-                                      </button>
+        <!-- Edit Button Triggering Modal -->
+<button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editApartmentModal{{ apartment.id }}">
+  <i class="fas fa-pen"></i>
+</button>
 
-                                      <!-- Edit Modal -->
-                                      <div class="modal fade" id="editApartmentModal{{ apartment.id }}" tabindex="-1" aria-labelledby="editApartmentModalLabel{{ apartment.id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="editApartmentModalLabel{{ apartment.id }}">Edit Apartment</h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                              <form method="post" action="">
-                                                {% csrf_token %}
-                                                <input type="text"  value = "{{apartment.id}}" disabled>
-                                                {{ edit_form.as_p }}
-                                                <input type="submit" value="Save Changes" class="btn btn-primary">
-                                              </form> 
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+<!-- Edit Modal -->
+<div class="modal fade" id="editApartmentModal{{ apartment.id }}" tabindex="-1" aria-labelledby="editApartmentModalLabel{{ apartment.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editApartmentModalLabel{{ apartment.id }}">Edit Apartment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="post" action="{% url 'account:update_apartment' id=apartment.id %}">
+                  {% csrf_token %}
+                  {{ edit_form.as_p }}
+                  <input type="submit" value="Save Changes" class="btn btn-primary">
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
 
                                       <!-- Delete Button Triggering Modal -->
                                      <!-- Button trigger modal -->

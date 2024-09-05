@@ -8,6 +8,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.conf.urls.static import static
 from .views import delete_apartment
+from .views import update_apartment
 
 app_name = 'account'
 urlpatterns = [
@@ -16,7 +17,7 @@ urlpatterns = [
     path('apartment/', ApartmentPage.as_view(), name='apartment'), 
     path('logout/', custom_logout_view, name='logout'),
     path('apartment/<str:id>/delete/', delete_apartment, name='delete_apartment'),
-#path('delete_apartment/<int:id>/', views.delete_apartment, name='delete_apartment'),
+    path('apartment/<int:id>/update/', update_apartment, name='update_apartment'),
 ]
 
 # Serve media files during development

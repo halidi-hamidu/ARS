@@ -17,27 +17,29 @@ def custom_logout_view(request):
     messages.success(request, 'You have been logged out.')
     return redirect('account/auth/login')  # Redirect to the login page after logout
 
-
 def update_apartment(request, id):
-    # Fetch the apartment object related to the passed ID
-    apartment = get_object_or_404(Apartment, id=id)
-
+    apartment = get_object_or_404(Apartment, pk=id)
+    
     if request.method == 'POST':
-        form = ApartmentForm(request.POST, request.FILES, instance=apartment)
-        print("--------------")
+        form = ApartmentForm(request.POST, instance=apartment)
         if form.is_valid():
             form.save()
             messages.success(request, 'Apartment updated successfully.')
-            return redirect('home')  # or redirect to a more specific detail page if needed
+            return redirect('account:apartment')  # Redirect to a suitable page
         else:
             messages.error(request, 'Failed to update the apartment.')
     else:
         form = ApartmentForm(instance=apartment)
+    
+    context = {
+        'apartment': apartment,
+        'edit_form': form
+    }
+    
+    return render(request, 'account/admin/apartment.html', context)
 
-    return render(request, 'edit_apartment.html', {'form': form, 'apartment': apartment})
 
-
-
+   
 def delete_apartment(request, id):
     # Fetch the Apartment object or return a 404 if not found
     apartment = get_object_or_404(Apartment, pk=id)
