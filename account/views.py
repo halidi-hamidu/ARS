@@ -18,52 +18,45 @@ def custom_logout_view(request):
     return redirect('account/auth/login')  # Redirect to the login page after logout
 
 
-class ApartmentPage(View):
-    def update_apartment(self, request, apartment_id):
-        # Fetch the apartment object related to the passed apartment_id
-        apartment = get_object_or_404(Apartment, id=apartment_id)
-        
-        # Create a form instance with the POST data, prepopulating it with the apartment instance
-        edit_form = ApartmentForm(request.POST or None, request.FILES or None, instance=apartment)
-        
-        # Create a context dictionary to pass data to the template
-        context = {
-            "form": edit_form,
-            "data": apartment
-        }
+def update_apartment(request, id):
+    # Fetch the apartment object related to the passed ID
+    apartment = get_object_or_404(Apartment, id=id)
 
-        # Check if the form is valid and save it
-        if edit_form.is_valid():
-            edit_form.save()
+    if request.method == 'POST':
+        form = ApartmentForm(request.POST, request.FILES, instance=apartment)
+        print("--------------")
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Apartment updated successfully.')
-            return redirect('account:apartment_detail', apartment_id=apartment_id)
+            return redirect('home')  # or redirect to a more specific detail page if needed
         else:
             messages.error(request, 'Failed to update the apartment.')
-        
-        # If the form is not valid, re-render the update form with error messages
-        return render(request, 'update_view.html', context)
+    else:
+        form = ApartmentForm(instance=apartment)
+
+    return render(request, 'edit_apartment.html', {'form': form, 'apartment': apartment})
 
 
-# Edit Apartment View
-# def apartment_edit(request, pk):
-#     apartment = get_object_or_404(Apartment, pk=pk)
-#     if request.method == "POST":
-#         form = ApartmentForm(request.POST, instance=apartment)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Apartment details updated successfully.')
-#             return redirect('account:apartment',pk)  # Redirect to the list of apartments
-#     else:
-#         form = ApartmentForm(instance=apartment)
-#     return render(request, 'account/admin/component/edit_apartment.html', {'form': form, 'apartment': apartment})
 
-# # Delete Apartment View
-# def delete_apartment(request, id):
-#     if request.method == 'POST':
-#         apartment = get_object_or_404(Apartment, id=id)
-#         apartment.delete()
-#         return redirect('your_redirect_url')  
-# Login View
+def delete_apartment(request, id):
+    # Fetch the Apartment object or return a 404 if not found
+    apartment = get_object_or_404(Apartment, pk=id)
+    
+    if request.method == 'POST':
+        apartment.delete()  # Correctly delete the apartment object
+        messages.success(request, 'Apartment deleted successfully.')
+        return redirect('account:apartment')  # Redirect to the home or apartment list page after deletion
+    
+    template_name = 'account/delete_view.html'
+    context = {
+        'apartment': apartment,  # Pass the correct apartment object to the template
+    }
+    
+    # Render the confirmation template
+    return render(request, template_name, context)
+
+
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
