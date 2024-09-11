@@ -3,10 +3,73 @@
 {% block title %}register{% endblock %}
 
 {% block content %}
-
-
+{% comment %} <head>
+<style>
+    :root {
+        --redColor: rgb(187, 5, 5);
+        --shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+    }
+    
+    /* Header Styling */
+    .header {
+        margin: 0;
+        padding: 0;
+        background-color: #fff; /* Optional background color */
+        border-bottom: 1px solid #ccc; /* Optional border */
+    }
+    
+    /* Register Form Section Styling */
+    .signup_form_section {
+        margin-top: 20px; /* Margin to create space between header and form */
+        padding: 20px; /* Optional padding for the section */
+    }
+    
+    .rsignup_form_section .inner_section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh; /* Ensure this container has enough height */
+    }
+    
+    .signup_form_section .inner_section form {
+        background-color: #f9f9f9; /* Light background for the form */
+        padding: 30px 40px; /* Padding for form */
+        box-shadow: var(--shadow);
+        border-radius: 8px; /* Rounded corners */
+        max-width: 400px; /* Maximum width */
+        width: 100%; /* Full width until max-width */
+        box-sizing: border-box; /* Ensure padding is included in width */
+    }
+    
+    .signup_form_section .inner_section form input {
+        width: 100%;
+        border: 1px solid #ccc; /* Light gray border */
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin-bottom: 15px; /* Space between input fields */
+        box-sizing: border-box; /* Include padding and border in width */
+    }
+    
+    .signup_form_section .inner_section form input[type="submit"] {
+        width: 100%;
+        border: none; /* Remove default border */
+        border-radius: 5px;
+        padding: 10px;
+        background-color: var(--redColor); /* Primary color for button */
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+    
+    .signup_form_section .inner_section form input[type="submit"]:hover {
+        background-color: darkred; /* Darker shade on hover */
+    }
+    
+</style>
+</head> {% endcomment %}
 <!-- sign-up form -->
-<div class="signup_form_section">
+<div class="register_form_section">
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">

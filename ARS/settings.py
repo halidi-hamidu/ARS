@@ -15,6 +15,12 @@ from pathlib import Path
 
 import os
 
+# Redirect URL after successful login
+LOGIN_REDIRECT_URL = 'home'
+
+# Redirect URL after logout
+LOGOUT_REDIRECT_URL = 'account/auth/login'
+
 # Define the base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
